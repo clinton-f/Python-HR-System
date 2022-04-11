@@ -1,4 +1,8 @@
 📄 Please document every important information in a concise manner.
 
 TO RUN THE APP:
-streamlit run UI.py
+streamlit run app.py
+
+WHERE TO EDIT PAGES:
+under the apps folder you'll find the pages, you can edit, add, etc... under the method def app.
+ 
