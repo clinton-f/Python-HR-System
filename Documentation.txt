@@ -1,1 +1,4 @@
 📄 Please document every important information in a concise manner.
+
+TO RUN THE APP:
+streamlit run UI.py
