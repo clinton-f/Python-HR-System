@@ -47,12 +47,25 @@ def app():
         
         st.table(data)
 
-        firstname, emplSal = st.columns([2,2])
-        firstname.text_input("Name:") 
-        emplSal.text_input("Salary:")
+        empID, empName = st.columns([2,2])
+        id = empID.text_input("ID:")
+        name = empName.text_input("Name:") 
 
-        submit_empl = st.form_submit_button("Submit")
+        empDept, emplSal = st.columns([2,2])
+        dpt = empDept.text_input("Department:")
+        sal = emplSal.text_input("Salary:")
+
+        add_empl, update_empl, delete_empl = st.columns([.5,.5,.5])
+
+        with add_empl:
+            add_empl = st.form_submit_button("Add New")
+
+        with update_empl:   
+            update_empl = st.form_submit_button("Update")
+
+        with delete_empl:
+            delete_empl = st.form_submit_button("Delete")
 
 
-        if submit_empl:
-            st.success("Employee data was submitted!")
+        if add_empl:
+            st.success(name)

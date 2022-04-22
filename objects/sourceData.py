@@ -26,3 +26,6 @@ def testLoad():
     bag = loadData()
 
     print(bag)
+
+def returnData():
+    pass
