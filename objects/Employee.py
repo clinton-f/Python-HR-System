@@ -34,5 +34,8 @@ class Employee:
     def getMeasure(self):
         return self.salary
 
+    def getType(self):
+        return "Employee"
+
     def toString(self):
         return "Employee [ID: " + str(self.id) + ", Name: " + self.name + ", Dept: " + self.dept + ", Salary: " + str(self.salary) + "]"

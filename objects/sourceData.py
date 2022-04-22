@@ -1,7 +1,7 @@
-from DataBag import DataBag
-from Employee import Employee
-from Manager import Manager
-from Executive import Executive
+from objects.DataBag import DataBag
+from objects.Employee import Employee
+from objects.Manager import Manager
+from objects.Executive import Executive
 
 def loadData():
 

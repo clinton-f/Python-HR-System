@@ -1,4 +1,4 @@
-from Employee import Employee
+from objects.Employee import Employee
 
 
 class Executive(Employee):
@@ -9,6 +9,9 @@ class Executive(Employee):
 
     def getMeasure(self):
         return self.salary + self.bonus
+
+    def getType(self):
+        return "Executive"
 
     def toString(self):
         return "Executive [ID: " + str(self.id) + ", Name: " + self.name + ", Dept: " + self.dept + ", Salary: " + str(self.salary) + ", Bonus: " + str(self.bonus) + "]"
