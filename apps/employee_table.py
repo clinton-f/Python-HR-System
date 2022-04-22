@@ -18,7 +18,7 @@ def app():
     
     st.subheader("Employee Table:")
 
-    with st.form(key="form1"):
+    with st.form(key="empForm"):
 
         #st.write(pd.DataFrame({
         #'ID': [1, 2, 3, 4],
@@ -47,12 +47,15 @@ def app():
         
         st.table(data)
 
-        firstname, emplSal = st.columns([2,2])
-        firstname.text_input("Name:") 
-        emplSal.text_input("Salary:")
+        #empForm = st.empForm(key="empForm")
+        firstName, emplDept, emplSal = st.beta_columns([2,2,2])
+        names = firstName.text_input("Name:") 
+        dept = emplDept.text_input("Department:")
+        salary = emplSal.text_input("Salary:")
 
-        submit_empl = st.form_submit_button("Submit")
+        empForm = st.form_submit_button(label='Submit')
 
-
-        if submit_empl:
-            st.success("Employee data was submitted!")
+        if empForm:
+            db.add(Employee(id, names, dept, salary))
+            st.success("Employee added!")
+            st.write(db)
