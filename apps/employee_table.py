@@ -42,7 +42,8 @@ def app():
         'Department': dept,
         'Salary': salary})
         
-        st.table(data)
+        #st.table(data)
+        st.dataframe(data=data, width=650, height=500)
 
         empID, empName = st.columns([2,2])
         inID = empID.text_input("ID:")
