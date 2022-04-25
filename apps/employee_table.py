@@ -65,7 +65,7 @@ def app():
 
 
         if add_empl:
-            st.session_state.key.add(Employee(len(st.session_state.key) + 1, inName, inDept, inSal))
+            st.session_state.key.add(Employee(len(st.session_state.key) + 1, inName, inDept, int(inSal)))
             st.success("Employee Added")
 
         #if update_empl:
