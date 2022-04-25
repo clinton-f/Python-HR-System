@@ -47,6 +47,7 @@ def app():
         
         st.table(data)
 
+<<<<<<< HEAD
         #empForm = st.empForm(key="empForm")
         firstName, emplDept, emplSal = st.beta_columns([2,2,2])
         names = firstName.text_input("Name:") 
@@ -59,3 +60,27 @@ def app():
             db.add(Employee(id, names, dept, salary))
             st.success("Employee added!")
             st.write(db)
+=======
+        empID, empName = st.columns([2,2])
+        id = empID.text_input("ID:")
+        name = empName.text_input("Name:") 
+
+        empDept, emplSal = st.columns([2,2])
+        dpt = empDept.text_input("Department:")
+        sal = emplSal.text_input("Salary:")
+
+        add_empl, update_empl, delete_empl = st.columns([.5,.5,.5])
+
+        with add_empl:
+            add_empl = st.form_submit_button("Add New")
+
+        with update_empl:   
+            update_empl = st.form_submit_button("Update")
+
+        with delete_empl:
+            delete_empl = st.form_submit_button("Delete")
+
+
+        if add_empl:
+            st.success(name)
+>>>>>>> 32798dd1cbf505b78500bad7ba5f52a2c30a814f
