@@ -4,7 +4,6 @@ import numpy as np
 
 from objects.Employee import Employee
 from objects.DataBag import DataBag
-from objects.sourceData import loadData
 
 def app():
     #st.title("Employee data goes under here.")
@@ -25,14 +24,12 @@ def app():
         #'Employee': [10, 20, 30, 40],
         #'Salary': [10, 20, 30, 40]}))
 
-        db = DataBag()
-        db = loadData()
         id = []
         names = []
         dept = []
         salary = []
 
-        for i in db:
+        for i in st.session_state.key:
             if i.getType() == "Employee":
                 id.append(i.getID())
                 names.append(i.getName())
@@ -48,12 +45,12 @@ def app():
         st.table(data)
 
         empID, empName = st.columns([2,2])
-        id = empID.text_input("ID:")
-        name = empName.text_input("Name:") 
+        inID = empID.text_input("ID:")
+        inName = empName.text_input("Name:") 
 
         empDept, emplSal = st.columns([2,2])
-        dpt = empDept.text_input("Department:")
-        sal = emplSal.text_input("Salary:")
+        inDept = empDept.text_input("Department:")
+        inSal = emplSal.text_input("Salary:")
 
         add_empl, update_empl, delete_empl = st.columns([.5,.5,.5])
 
@@ -68,4 +65,16 @@ def app():
 
 
         if add_empl:
-            st.success(name)
+            st.session_state.key.add(Employee(len(st.session_state.key) + 1, inName, inDept, inSal))
+            st.success("Employee Added")
+
+        #if update_empl:
+        #    for i in db:
+        #        if i.getID() == id:
+        #            st.success("yes")
+
+        if delete_empl:
+            for i in st.session_state.key:
+                if i.getID() == inID:
+                    st.success("finally")
+                

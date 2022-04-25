@@ -3,16 +3,21 @@ import streamlit as st
 # Custom imports 
 
 from multipage import MultiPage
-from apps import home, employee_table, manager, executive, payroll 
+from apps import home, employee_table, manager, executive, payroll
+from objects.DataBag import DataBag
+from objects.sourceData import loadData
 
 
 st.header("HR Payroll Employee Management Application")
 
 # For the Menu Bar
 
+# Adds DataBag for storage to session state
+test = DataBag()
+test = loadData()
 
-
-
+if 'key' not in st.session_state:
+    st.session_state.key = test
 
 # This is the multipage section, so all pages here.
  
