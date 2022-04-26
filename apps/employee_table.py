@@ -18,6 +18,7 @@ def app():
     names = []
     dept = []
     salary = []
+    amt = 0
 
     for i in st.session_state.key:
         if i.getType() == "Employee":
@@ -25,6 +26,7 @@ def app():
             names.append(i.getName())
             dept.append(i.getDept())
             salary.append(i.getSalary())
+            amt += 1
 
     data = pd.DataFrame({
     'ID': id,
@@ -75,12 +77,16 @@ def app():
         for i in st.session_state.key:
             if i.getID() == int(inID):
 
+                print(len(st.session_state.key))
+                st.session_state.key.remove(i)
+                print(len(st.session_state.key))
 
-                db = st.session_state.key
+                st.success("Employee Deleted")
                 
-                db.deleteById(int(inID))
-                
-                st.session_state.key = db
+                id = []
+                names = []
+                dept = []
+                salary = []
 
                 for i in st.session_state.key:
                     if i.getType() == "Employee":
@@ -94,6 +100,9 @@ def app():
                     'Employee Name': names,
                     'Department': dept,
                     'Salary': salary})
+
+                frame.empty()
+                frame = st.dataframe(data=data, width=577, height=500)
 
                 found = True
             

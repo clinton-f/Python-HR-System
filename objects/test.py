@@ -61,5 +61,29 @@ def test():
     if bag.isEmpty():
         print("clear working")
 
+def test2():
+    ### APP IMPORTS MUST BE RECONFIGURED BEFORE AND AFTER USE
+    bag = DataBag()
 
-test()
+    emp0 = Employee(0, "name", "dept", 100)
+    print(emp0.toString())
+
+    man0 = Manager(00, "name", "dept", 1000)
+    print(man0.toString())
+
+    exec0 = Executive(000, "name", "dept", 1000, 100)
+    print(exec0.toString())
+
+    bag.add(emp0)
+    bag.add(man0)
+    bag.add(exec0)
+    
+    print()
+    print(bag)
+
+    bag.deleteById(0)
+
+    print()
+    print(bag)
+    
+test2()
