@@ -76,11 +76,11 @@ def app():
     if delete_empl:
         for i in st.session_state.key:
             if i.getID() == int(inID):
-                
+
                 st.session_state.key.remove(i)
 
                 st.success("Employee Deleted")
-                
+
                 id = []
                 names = []
                 dept = []

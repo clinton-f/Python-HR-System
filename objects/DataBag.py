@@ -1,3 +1,4 @@
+from objects.Employee import Employee
 
 class DataBag(object):
     """A list-based bag implementation."""
