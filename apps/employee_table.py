@@ -45,20 +45,6 @@ def app():
         #st.table(data)
         st.dataframe(data=data, width=650, height=500)
 
-<<<<<<< HEAD
-        #empForm = st.empForm(key="empForm")
-        firstName, emplDept, emplSal = st.beta_columns([2,2,2])
-        names = firstName.text_input("Name:") 
-        dept = emplDept.text_input("Department:")
-        salary = emplSal.text_input("Salary:")
-
-        empForm = st.form_submit_button(label='Submit')
-
-        if empForm:
-            db.add(Employee(id, names, dept, salary))
-            st.success("Employee added!")
-            st.write(db)
-=======
         empID, empName = st.columns([2,2])
         inID = empID.text_input("ID:")
         inName = empName.text_input("Name:") 
@@ -80,10 +66,6 @@ def app():
 
 
         if add_empl:
-<<<<<<< HEAD
-            st.success(name)
->>>>>>> 32798dd1cbf505b78500bad7ba5f52a2c30a814f
-=======
             st.session_state.key.add(Employee(len(st.session_state.key) + 1, inName, inDept, int(inSal)))
             st.success("Employee Added")
 
@@ -97,4 +79,3 @@ def app():
                 if i.getID() == inID:
                     st.success("finally")
                 
->>>>>>> ee17b22401ae999a6c30f750e88c708d68294c99
