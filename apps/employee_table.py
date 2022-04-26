@@ -76,10 +76,8 @@ def app():
     if delete_empl:
         for i in st.session_state.key:
             if i.getID() == int(inID):
-
-                print(len(st.session_state.key))
+                
                 st.session_state.key.remove(i)
-                print(len(st.session_state.key))
 
                 st.success("Employee Deleted")
                 
