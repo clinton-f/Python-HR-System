@@ -13,5 +13,8 @@ class Executive(Employee):
     def getType(self):
         return "Executive"
 
+    def getBonus(self):
+        return self.bonus
+
     def toString(self):
         return "Executive [ID: " + str(self.id) + ", Name: " + self.name + ", Dept: " + self.dept + ", Salary: " + str(self.salary) + ", Bonus: " + str(self.bonus) + "]"
