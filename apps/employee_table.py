@@ -75,6 +75,7 @@ def app():
 
     if delete_empl:
         ### find Employee in DataBag where ID is matching
+        found = False
         for i in st.session_state.key:
             if i.getID() == int(inID):
 
@@ -110,4 +111,4 @@ def app():
                 found = True
 
         ### alert the user if Employee ID cannot be found    
-        if not found: st.warning("Text warning!")
+        if not found: st.warning("ID cannot be found")
