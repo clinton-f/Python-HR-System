@@ -80,3 +80,12 @@ class DataBag(object):
             raise KeyError("Item not in bag")
         else:
             self.items.remove(item)
+
+    def deleteById(self, index):
+        """Deletes item in DataBag based on position"""
+
+        count = 0
+        for i in self.items:
+            if count == index:
+                self.items.remove(i)
+            count += 1

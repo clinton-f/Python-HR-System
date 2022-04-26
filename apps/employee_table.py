@@ -14,68 +14,87 @@ def app():
     # Warning Alert
     #st.warning("Text warning!")
 
+    id = []
+    names = []
+    dept = []
+    salary = []
+
+    for i in st.session_state.key:
+        if i.getType() == "Employee":
+            id.append(i.getID())
+            names.append(i.getName())
+            dept.append(i.getDept())
+            salary.append(i.getSalary())
+
+    data = pd.DataFrame({
+    'ID': id,
+    'Employee Name': names,
+    'Department': dept,
+    'Salary': salary})
     
-    st.subheader("Employee Table:")
+    #st.table(data)
+    
+    empID, empName = st.columns([2,2])
+    inID = empID.text_input("ID:")
+    inName = empName.text_input("Name:") 
 
-    with st.form(key="form1"):
+    empDept, emplSal = st.columns([2,2])
+    inDept = empDept.text_input("Department:")
+    inSal = emplSal.text_input("Salary:")
 
-        #st.write(pd.DataFrame({
-        #'ID': [1, 2, 3, 4],
-        #'Employee': [10, 20, 30, 40],
-        #'Salary': [10, 20, 30, 40]}))
+    add_empl, update_empl, delete_empl = st.columns([.5,.5,.5])
 
-        id = []
-        names = []
-        dept = []
-        salary = []
+    with add_empl:
+        add_empl = st.button("Add New")
 
-        for i in st.session_state.key:
-            if i.getType() == "Employee":
-                id.append(i.getID())
-                names.append(i.getName())
-                dept.append(i.getDept())
-                salary.append(i.getSalary())
+    with update_empl:   
+        update_empl = st.button("Update")
 
-        data = pd.DataFrame({
-        'ID': id,
-        'Employee Name': names,
-        'Department': dept,
-        'Salary': salary})
+    with delete_empl:
+        delete_empl = st.button("Delete by ID")
+
+    frame = st.dataframe(data=data, width=577, height=500)
+
+    if add_empl:
+        st.session_state.key.add(Employee(len(st.session_state.key) + 1, inName, inDept, int(inSal)))
+
+        data2 = pd.DataFrame({
+            'ID': [len(st.session_state.key)],
+            'Employee Name': [inName],
+            'Department': [inDept],
+            'Salary': [int(inSal)]})
         
-        #st.table(data)
-        st.dataframe(data=data, width=650, height=500)
+        data = pd.concat([data, data2], ignore_index=True)
 
-        empID, empName = st.columns([2,2])
-        inID = empID.text_input("ID:")
-        inName = empName.text_input("Name:") 
+        st.success("Employee Added")
 
-        empDept, emplSal = st.columns([2,2])
-        inDept = empDept.text_input("Department:")
-        inSal = emplSal.text_input("Salary:")
+        frame.empty()
+        frame = st.dataframe(data=data, width=577, height=500)
 
-        add_empl, update_empl, delete_empl = st.columns([.5,.5,.5])
-
-        with add_empl:
-            add_empl = st.form_submit_button("Add New")
-
-        with update_empl:   
-            update_empl = st.form_submit_button("Update")
-
-        with delete_empl:
-            delete_empl = st.form_submit_button("Delete")
+    if delete_empl:
+        for i in st.session_state.key:
+            if i.getID() == int(inID):
 
 
-        if add_empl:
-            st.session_state.key.add(Employee(len(st.session_state.key) + 1, inName, inDept, int(inSal)))
-            st.success("Employee Added")
-
-        #if update_empl:
-        #    for i in db:
-        #        if i.getID() == id:
-        #            st.success("yes")
-
-        if delete_empl:
-            for i in st.session_state.key:
-                if i.getID() == inID:
-                    st.success("finally")
+                db = st.session_state.key
                 
+                db.deleteById(int(inID))
+                
+                st.session_state.key = db
+
+                for i in st.session_state.key:
+                    if i.getType() == "Employee":
+                        id.append(i.getID())
+                        names.append(i.getName())
+                        dept.append(i.getDept())
+                        salary.append(i.getSalary())
+
+                data = pd.DataFrame({
+                    'ID': id,
+                    'Employee Name': names,
+                    'Department': dept,
+                    'Salary': salary})
+
+                found = True
+            
+        if not found: st.warning("Text warning!")
