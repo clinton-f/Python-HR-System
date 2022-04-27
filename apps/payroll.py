@@ -9,6 +9,8 @@ from objects.DataBag import DataBag
 
 def app():
 
+    frame = st.empty()
+
     list_all, pay_emp, pay_man, pay_exec = st.columns([1.5, 2, 2, 2])
     run_all, max_paid, list_name, list_salary = st.columns([1.5, 2, 2, 2])
     load_data, clear_page, exit_app = st.columns([2 , 1.5, 1.5])
@@ -81,7 +83,7 @@ def app():
         'Bonus': bonus})
 
         st.success("Data Loaded")
-        st.dataframe(data=data, width=577, height=500)
+        frame = st.dataframe(data=data, width=577, height=500)
 
     if pay_emp:
         pass
@@ -108,7 +110,7 @@ def app():
         pass
 
     if clear_page:
-        pass
+        frame.empty()
 
     if exit_app:
         pass
