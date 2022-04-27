@@ -1,17 +1,14 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
 
-from objects.Employee import Employee
-from objects.Manager import Manager
-from objects.Executive import Executive
 from objects.DataBag import DataBag
 from objects.sourceData import loadData
 
 def app():
-
+    ### initialize frame
     frame = st.empty()
 
+    ### initialize buttons
     list_all, pay_emp, pay_man, pay_exec = st.columns([1.5, 2, 2, 2])
     run_all, max_paid, list_name, list_salary = st.columns([1.5, 2, 2, 2])
     load_data, clear_page = st.columns([.5 , 1])
@@ -46,6 +43,7 @@ def app():
     with clear_page:
         clear_page = st.button("Clear")
     
+    ### handle button onClicks
     if list_all:
         frame.empty()
 
@@ -80,12 +78,14 @@ def app():
         'Salary': salary,
         'Bonus': bonus})
 
+        ### load frame with data
         st.success("Data Loaded")
         frame = st.dataframe(data=data, width=577, height=500)
 
     if pay_emp:
         frame.empty()
 
+        ### "pays" each employee salary
         for i in st.session_state.key:
             if i.getType() == "Employee":
                 st.write(i.toString() + "  paid: " + str(i.getSalary()))
@@ -93,6 +93,7 @@ def app():
     if pay_man:
         frame.empty()
         
+        ### "pays" each manager salary
         for i in st.session_state.key:
             if i.getType() == "Manager":
                 st.write(i.toString() + "  paid: " + str(i.getSalary()))
@@ -100,6 +101,7 @@ def app():
     if pay_exec:
         frame.empty()
         
+        ### "pays" each executive salary and bonus
         for i in st.session_state.key:
             if i.getType() == "Executive":
                 st.write(i.toString() + "  paid: " + str(i.getSalary() + i.getBonus()))
@@ -108,6 +110,7 @@ def app():
     if run_all:
         frame.empty()
 
+        ### "pays" all employees
         for i in st.session_state.key:
             if i.getType() == "Employee" or i.getType() == "Manager":
 
@@ -121,6 +124,8 @@ def app():
 
         temp = []
 
+        ### iterates through DataBag and finds the highest value
+        ### by salary
         for i in st.session_state.key:
             if len(temp) == 0:
                 temp.append(i)
@@ -134,6 +139,7 @@ def app():
     if list_name:
         frame.empty()
 
+        ### sort DataBag by name and assign it
         a = st.session_state.key.sortByName()
 
         ### initialize arrays for input into Pandas DataFrame
@@ -173,6 +179,7 @@ def app():
     if list_salary:
         frame.empty()
         
+        ### sort DataBag by salary and assign it
         a = st.session_state.key.sortBySalary()
 
         ### initialize arrays for input into Pandas DataFrame
@@ -210,27 +217,15 @@ def app():
         frame = st.dataframe(data=data, width=577, height=500)
 
     if load_data:
+        ### initializes variable with DataBag and loads it
         test = DataBag()
         test = loadData()
 
+        ### add DataBag to session state if not present
         if 'key' not in st.session_state:
             st.session_state.key = test
-
-        print(len(st.session_state.key))
 
         st.success("DataBag Loaded")
 
     if clear_page:
         frame.empty()
-
-    ### here lies where the exit button would be
-    ### there is no exit button due to streamlit's devs
-    ### according to dev kmcgrady on Mar 25, 2021:
-    #     
-    #       "we do not envision a use case
-    #           to shut down the server due
-    #           to a UI interaction in the
-    #           script."
-    #
-    ###               kmcgrady ...
-    ###              meet use case
