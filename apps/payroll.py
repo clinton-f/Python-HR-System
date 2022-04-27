@@ -14,7 +14,7 @@ def app():
 
     list_all, pay_emp, pay_man, pay_exec = st.columns([1.5, 2, 2, 2])
     run_all, max_paid, list_name, list_salary = st.columns([1.5, 2, 2, 2])
-    load_data, clear_page, exit_app = st.columns([2 , 1.5, 1.5])
+    load_data, clear_page = st.columns([.5 , 1])
 
     with list_all:
         list_all = st.button("List All")
@@ -45,10 +45,6 @@ def app():
 
     with clear_page:
         clear_page = st.button("Clear")
-
-    with exit_app:
-        exit_app = st.button("Exit")
-
     
     if list_all:
 
@@ -120,6 +116,3 @@ def app():
 
     if clear_page:
         frame.empty()
-
-    if exit_app:
-        pass
