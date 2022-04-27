@@ -56,7 +56,7 @@ def app():
 
     if add_empl:
         ### add Employee to DataBag in session state
-        st.session_state.key.add(Manager(len(st.session_state.key) + 1, inName, inDept, int(inSal)))
+        st.session_state.key.add(Manager(len(st.session_state.key), inName, inDept, int(inSal)))
 
         ### create second Pandas DataFrame to add new elements to table
         data2 = pd.DataFrame({

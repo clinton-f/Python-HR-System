@@ -12,7 +12,6 @@ def app():
     names = []
     dept = []
     salary = []
-    amt = 0
 
     ### read Employees from DataBag stored in session state key
     for i in st.session_state.key:
@@ -21,7 +20,6 @@ def app():
             names.append(i.getName())
             dept.append(i.getDept())
             salary.append(i.getSalary())
-            amt += 1
 
     ### add values to Pandas DataFrame
     data = pd.DataFrame({
@@ -55,7 +53,7 @@ def app():
 
     if add_empl:
         ### add Employee to DataBag in session state
-        st.session_state.key.add(Employee(len(st.session_state.key) + 1, inName, inDept, int(inSal)))
+        st.session_state.key.add(Employee(len(st.session_state.key), inName, inDept, int(inSal)))
 
         ### create second Pandas DataFrame to add new elements to table
         data2 = pd.DataFrame({
