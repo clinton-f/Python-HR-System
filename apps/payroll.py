@@ -117,7 +117,19 @@ def app():
                 st.write(i.toString() + "  paid: " + str(i.getSalary() + i.getBonus()))
 
     if max_paid:
-        pass
+        frame.empty()
+
+        temp = []
+
+        for i in st.session_state.key:
+            if len(temp) == 0:
+                temp.append(i)
+            else:
+                if i.getMeasure() > temp[0].getMeasure():
+                    temp.pop(0)
+                    temp.append(i)
+        
+        st.write(temp.pop(0).toString())
 
     if list_name:
         pass
