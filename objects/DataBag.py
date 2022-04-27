@@ -1,4 +1,3 @@
-from objects.Employee import Employee
 
 class DataBag(object):
     """A list-based bag implementation."""
@@ -53,22 +52,13 @@ class DataBag(object):
                 return False
         return True
 
+    # Mutator methods
     def sortByName(self):
         return sorted(self.items, key=lambda x: x.getName(), reverse=False)
 
     def sortBySalary(self):
         return sorted(self.items, key=lambda x: x.getSalary(), reverse=False)
 
-    """Used for debugging only   ---   method to be deleted"""
-    def count(self, item):
-        """Returns the number of instances of item in self."""
-        total = 0
-        for nextItem in self:
-            if nextItem == item:
-                total += 1
-        return total
-
-    # Mutator methods
     def clear(self):
         """Makes self become empty."""
         self.items = list()
