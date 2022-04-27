@@ -84,7 +84,12 @@ def app():
         frame = st.dataframe(data=data, width=577, height=500)
 
     if pay_emp:
-        pass
+        frame.empty()
+        
+        for i in st.session_state.key:
+            if i.getType() == "Employee":
+                st.write(i.toString() + "  paid: " + str(i.getSalary()))
+        
     if pay_man:
         pass
 
