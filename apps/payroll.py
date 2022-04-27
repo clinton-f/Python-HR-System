@@ -133,7 +133,7 @@ def app():
 
     if list_name:
         frame.empty()
-        
+
         a = st.session_state.key.sortByName()
 
         ### initialize arrays for input into Pandas DataFrame
@@ -171,7 +171,43 @@ def app():
         frame = st.dataframe(data=data, width=577, height=500)
 
     if list_salary:
-        pass
+        frame.empty()
+        
+        a = st.session_state.key.sortBySalary()
+
+        ### initialize arrays for input into Pandas DataFrame
+        id = []
+        names = []
+        dept = []
+        salary = []
+        bonus = []
+
+        ### read Employees from DataBag stored in session state key
+        for i in a:
+            if i.getType() == "Employee" or i.getType() == "Manager":
+                id.append(i.getID())
+                names.append(i.getName())
+                dept.append(i.getDept())
+                salary.append(i.getSalary())
+                bonus.append(0)
+                
+            else:
+                id.append(i.getID())
+                names.append(i.getName())
+                dept.append(i.getDept())
+                salary.append(i.getSalary())
+                bonus.append(i.getBonus())
+                
+        ### add values to Pandas DataFrame
+        data = pd.DataFrame({
+        'ID': id,
+        'Employee Name': names,
+        'Department': dept,
+        'Salary': salary,
+        'Bonus': bonus})
+
+        st.success("Sorted by Name")
+        frame = st.dataframe(data=data, width=577, height=500)
 
     if load_data:
         test = DataBag()

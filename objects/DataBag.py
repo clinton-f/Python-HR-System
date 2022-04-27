@@ -56,6 +56,9 @@ class DataBag(object):
     def sortByName(self):
         return sorted(self.items, key=lambda x: x.getName(), reverse=False)
 
+    def sortBySalary(self):
+        return sorted(self.items, key=lambda x: x.getSalary(), reverse=False)
+
     """Used for debugging only   ---   method to be deleted"""
     def count(self, item):
         """Returns the number of instances of item in self."""
