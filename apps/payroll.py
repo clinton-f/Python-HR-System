@@ -98,7 +98,12 @@ def app():
                 st.write(i.toString() + "  paid: " + str(i.getSalary()))
 
     if pay_exec:
-        pass
+        frame.empty()
+        
+        for i in st.session_state.key:
+            if i.getType() == "Executive":
+                st.write(i.toString() + "  paid: " + str(i.getSalary() + i.getBonus()))
+
 
     if run_all:
         frame.empty()
