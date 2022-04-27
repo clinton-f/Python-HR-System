@@ -116,3 +116,15 @@ def app():
 
     if clear_page:
         frame.empty()
+
+    ### here lies where the exit button would be
+    ### there is no exit button due to streamlit's devs
+    ### according to dev kmcgrady on Mar 25, 2021:
+    #     
+    #       "we do not envision a use case
+    #           to shut down the server due
+    #           to a UI interaction in the
+    #           script."
+    #
+    ###               kmcgrady ...
+    ###              meet use case
