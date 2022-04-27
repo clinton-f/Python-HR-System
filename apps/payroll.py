@@ -6,6 +6,7 @@ from objects.Employee import Employee
 from objects.Manager import Manager
 from objects.Executive import Executive
 from objects.DataBag import DataBag
+from objects.sourceData import loadData
 
 def app():
 
@@ -107,7 +108,15 @@ def app():
         pass
 
     if load_data:
-        pass
+        test = DataBag()
+        test = loadData()
+
+        if 'key' not in st.session_state:
+            st.session_state.key = test
+
+        print(len(st.session_state.key))
+
+        st.success("DataBag Loaded")
 
     if clear_page:
         frame.empty()
