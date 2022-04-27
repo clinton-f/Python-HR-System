@@ -1,6 +1,6 @@
 import streamlit as st
 
-# Custom imports 
+# Custom imports #
 
 from multipage import MultiPage
 from apps import home, employee_table, manager, executive, payroll
