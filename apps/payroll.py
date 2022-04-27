@@ -85,13 +85,17 @@ def app():
 
     if pay_emp:
         frame.empty()
-        
+
         for i in st.session_state.key:
             if i.getType() == "Employee":
                 st.write(i.toString() + "  paid: " + str(i.getSalary()))
         
     if pay_man:
-        pass
+        frame.empty()
+        
+        for i in st.session_state.key:
+            if i.getType() == "Manager":
+                st.write(i.toString() + "  paid: " + str(i.getSalary()))
 
     if pay_exec:
         pass
