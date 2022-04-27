@@ -53,6 +53,9 @@ class DataBag(object):
                 return False
         return True
 
+    def sortByName(self):
+        return sorted(self.items, key=lambda x: x.getName(), reverse=False)
+
     """Used for debugging only   ---   method to be deleted"""
     def count(self, item):
         """Returns the number of instances of item in self."""
