@@ -17,15 +17,3 @@ def loadData():
         bag.add(Executive(i + 65, "name" + str(i + 65), "CSC", 825 + i * 5, 100 + i * 10))
 
     return bag
-
-### For Testing only --- to be removed ###
-def testLoad():
-
-    bag = DataBag()
-
-    bag = loadData()
-
-    print(bag)
-
-def returnData():
-    pass
