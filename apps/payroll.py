@@ -47,6 +47,7 @@ def app():
         clear_page = st.button("Clear")
     
     if list_all:
+        frame.empty()
 
         ### initialize arrays for input into Pandas DataFrame
         id = []
@@ -84,7 +85,6 @@ def app():
 
     if pay_emp:
         pass
-
     if pay_man:
         pass
 
@@ -92,7 +92,15 @@ def app():
         pass
 
     if run_all:
-        pass
+        frame.empty()
+
+        for i in st.session_state.key:
+            if i.getType() == "Employee" or i.getType() == "Manager":
+
+                st.write(i.toString() + "  paid: " + str(i.getSalary()))
+                
+            else:
+                st.write(i.toString() + "  paid: " + str(i.getSalary() + i.getBonus()))
 
     if max_paid:
         pass
