@@ -8,7 +8,7 @@ from objects.sourceData import loadData
 
 
 ### Create header
-st.header("HR Payroll Employee Management Application")
+####  st.header("HR Payroll Employee Management Application")
 
 ### Adds DataBag for storage to session state
 test = DataBag()
@@ -21,6 +21,7 @@ if 'key' not in st.session_state:
 ### Create an instance of the app 
 app = MultiPage()
 
+st.set_page_config(page_title="HR Mgmt App", page_icon="💼")
 
 ### Add all your applications (pages) here
 app.add_page("Home", home.app)
@@ -28,6 +29,7 @@ app.add_page("Employee", employee_table.app)
 app.add_page("Manager", manager.app)
 app.add_page("Executive", executive.app)
 app.add_page("Payroll", payroll.app)
+
 
 ### Run app
 app.run()
