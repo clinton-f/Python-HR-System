@@ -73,7 +73,7 @@ def app():
         ### add values to Pandas DataFrame
         data = pd.DataFrame({
         'ID': id,
-        'Employee Name': names,
+        'All Members': names,
         'Department': dept,
         'Salary': salary,
         'Bonus': bonus})
